@@ -4,7 +4,7 @@ const webpack = require('webpack')
 
 const lessToJs = require('less-vars-to-js')
 const themeVariables = lessToJs(fs.readFileSync(path.join(__dirname, './src/theme.less'), 'utf8'))
-themeVariables["@icon-url"] = "'http://localhost:8080/fonts/iconfont'"
+//themeVariables["@icon-url"] = "'http://localhost:8080/fonts/iconfont'"
 
 module.exports = {
   devtool: 'eval-source-map',

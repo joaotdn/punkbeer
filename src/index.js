@@ -41,7 +41,7 @@ const render = () => {
         <LocaleProvider locale={en_US}><App history={history} /></LocaleProvider>
       </Provider>
     </AppContainer>,
-    document.getElementById('react-root')
+    document.getElementById('root')
   )
 }
 
