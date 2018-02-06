@@ -1,0 +1,1 @@
+export const RECEIVE_BEERS = 'RECEIVE_BEERS'

@@ -1,0 +1,39 @@
+// ant default vars
+// https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
+
+// DESIGN SETTINGS
+// ===============================
+
+// Palette
+@brown: #8D5103;
+@yellow: #FFD600;
+@default-bg: #F0F0C0;
+@orange: #F76F05;
+@golden: #F0A800;
+
+// MODIFY VARIABLES
+// ===============================
+
+// Colors
+@primary-color: @yellow;
+@body-background: @default-bg;
+@layout-body-background: @default-bg;
+@layout-header-background:  @default-bg;
+
+// @icon-url is handled in the webpack.${environment}.config and assets/styles/common/iconfonts.less files
+
+// SELECTORS
+// ===============================
+.list-beers {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+}
+.ant-avatar {
+    overflow: visible;
+    height: auto;
+    img {
+        width: 30px;
+        height: auto;
+    }
+}
