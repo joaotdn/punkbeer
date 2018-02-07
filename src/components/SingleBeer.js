@@ -29,7 +29,7 @@ class SingleBeers extends Component {
                         style={{ width: '100%' }}
                     >
                         <Row className="beer-img">
-                            <div style={{ backgroundImage: 'url("https://cdn.shopify.com/s/files/1/1793/7601/products/american-wheat-beer-glass-spiegelau-filled_2000x.jpg?v=1517255457")' }}></div>
+                            <div style={{ backgroundImage: `url("${beer.image_url}")` }}></div>
                         </Row>
                         <Meta
                             description={beer.description}
