@@ -9,10 +9,22 @@ const App = ({ history }) => {
   return (
     <Layout className="App">
         <Header>
-            <div className="logo" />
+            <a 
+                onClick={(e) => { history.push('/') }}
+                style={{
+                    display: 'block',
+                    width: '100%',
+                    padding: 30,
+                    textAlign: 'center'
+                }}
+            >
+                <div className="logo" />
+                <br />
+                <span>Sample PunkApi React Application</span>
+            </a>
         </Header>
 
-        <Content style={{ padding: '0 50px' }}>
+        <Content>
             <Row>
                 <Col sm={24} lg={{ span: 12, offset: 6 }}>
                     <ConnectedRouter history={history}>

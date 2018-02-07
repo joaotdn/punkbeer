@@ -1,6 +1,8 @@
 const path = require('path')
 const fs  = require('fs')
 const webpack = require('webpack')
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+var CompressionPlugin = require("compression-webpack-plugin")
 
 const lessToJs = require('less-vars-to-js')
 const themeVariables = lessToJs(fs.readFileSync(path.join(__dirname, './src/theme.less'), 'utf8'))
@@ -9,6 +11,7 @@ const themeVariables = lessToJs(fs.readFileSync(path.join(__dirname, './src/them
 module.exports = {
   devtool: 'eval-source-map',
   context: __dirname,
+  cache: false,
   entry: [
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
@@ -59,7 +62,33 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({'process.env.NODE_ENV': '"production"'}),
     new webpack.HotModuleReplacementPlugin(),
+    new BundleAnalyzerPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: true,
+      compress: {
+        warnings: false, // Suppress uglification warnings
+        pure_getters: true,
+        unsafe: true,
+        unsafe_comps: true,
+        screw_ie8: true
+      },
+      output: {
+        comments: false,
+      },
+      exclude: [/\.min\.js$/gi] // skip pre-minified libs
+    }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.NoErrorsPlugin(),
+    new CompressionPlugin({
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0
+    })
   ],
   resolveLoader: {
     modules: [

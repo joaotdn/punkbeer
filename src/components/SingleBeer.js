@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Card, Button, Icon } from 'antd'
+import { Row, Card, Button, Icon } from 'antd'
+import BeerAbv from './BeerAbv'
+import BeerSince from './BeerSince'
+import BeerPh from './BeerPh'
 const { Meta } = Card
+
 
 class SingleBeers extends Component {
     goBack() {
@@ -18,16 +22,20 @@ class SingleBeers extends Component {
             <div>
                 {beer ? (
                     <Card
+                        title={beer.name}
+                        actions={[<BeerAbv abv={beer.abv} />, <BeerSince since={beer.first_brewed} />, <BeerPh ph={beer.ph} />]}
+                        extra={<Button type="primary" onClick={this.goBack.bind(this)}><Icon type="left" />Go back</Button>}
                         hoverable
                         style={{ width: '100%' }}
-                        actions={[<Button type="primary"><Icon type="left" />Go back</Button>]}
                     >
+                        <Row className="beer-img">
+                            <div style={{ backgroundImage: 'url("https://cdn.shopify.com/s/files/1/1793/7601/products/american-wheat-beer-glass-spiegelau-filled_2000x.jpg?v=1517255457")' }}></div>
+                        </Row>
                         <Meta
-                            title={beer.name}
                             description={beer.description}
                         />
                     </Card>
-                ) : (<a onClick={this.goBack.bind(this)}>Voltar</a>) }
+                ) : null }
             </div>
         )
     }

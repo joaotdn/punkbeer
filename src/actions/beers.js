@@ -8,8 +8,13 @@ const receiveBeers = beers => ({
 })
 
 export const getAllBeers = () => dispatch => {
-    axios.get(config.API_BASE_URL + 'beers')
-    //axios.get('https://jsonplaceholder.typicode.com/albums')
+    //axios.get(config.API_BASE_URL + 'beers')
+    axios.get('http://www.portalczn.com.br/plm/api.json', {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            crossdomain: true
+        }
+    })
         .then(res => {
             if (res.status === 200)
                 dispatch(receiveBeers(res.data))
